@@ -1,0 +1,7 @@
+# ignore .idea folder
+.idea/
+*.pyc
+*.less
+migrations/
+venv/
+whoosh_index/

@@ -1,14 +1,14 @@
-#coding:utf-8
+# coding:utf-8
 import hashlib
-#导入图像相关模块
+# 导入图像相关模块
 from PIL import Image,ImageDraw
 
-#根据字符串生成5*5的0，1矩阵
+# 根据字符串生成5*5的0，1矩阵
 def to_hash_array(str):
     hash_str = hashlib.md5(str).hexdigest()
     binary_str = bin(int(hash_str,16))[2:][:64]
     
-    print binary_str
+    # print binary_str
 
     arrs = [[0] * 5,[0] * 3]
     for i in range(5):
@@ -31,7 +31,7 @@ def to_hash_array(str):
     return arrs3
 
 
-#根据字符串的hash生成颜色值
+# 根据字符串的hash生成颜色值
 def get_hash_color(str):
     hash_str = hashlib.md5(str).hexdigest()
     r = int(hash_str[:2],16)
@@ -39,15 +39,8 @@ def get_hash_color(str):
     b = int(hash_str[12:14],16)
     return (r,g,b)
 
-#根据hash生成图片
+# 根据hash生成图片
 def get_hash_image(str='default',width=250,height=250,rect_width=50,rect_height=50):
-    #图片宽度
-    width = 250
-    #图片高度
-    height = 250
-    #方块宽高
-    rect_width=50
-    rect_height=50
     #背景颜色
     bgcolor = (255,255,255)
     #方块颜色
@@ -65,7 +58,7 @@ def get_hash_image(str='default',width=250,height=250,rect_width=50,rect_height=
             if arr[i][j] == 1:
                 fill = rectcolor
             draw.rectangle((j*rect_width,i*rect_height,(j+1)*rect_width,(i+1)*rect_height),fill=fill)
-    #释放draw
+    # 释放draw
     del draw
     return image
 
@@ -73,15 +66,15 @@ def get_hash_image(str='default',width=250,height=250,rect_width=50,rect_height=
 img = get_hash_image('123123')
 img.save('1234_1.jpeg')
 
-#from datetime import datetime
-#import time
-#def get_file_name():
+# from datetime import datetime
+# import time
+# def get_file_name():
 #    timestamp = str(int(time.mktime(datetime.utcnow().timetuple())))
 #    file_name = 'head_pic_'+timestamp+'.jpge'
 #    return file_name
-#print get_file_name()
+# print get_file_name()
 
-#import os
-#basedir = os.path.abspath(os.path.dirname(__file__))
-#head_dir = basedir + '\\project\\static\\images\\heads\\'
-#print head_dir
+# import os
+# basedir = os.path.abspath(os.path.dirname(__file__))
+# head_dir = basedir + '\\project\\static\\images\\heads\\'
+# print head_dir
